@@ -19,7 +19,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.ships = this.data.query$;
-    this.subscription = this.data.query$.subscribe()
+    this.subscription = this.data.query$.subscribe((data)=>console.log(data));
+
   }
 
 }

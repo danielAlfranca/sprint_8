@@ -9,12 +9,22 @@ import { APIResponse, Ship } from '../interfaces/api';
 export class DataService {
 
   query$!:Observable<Ship[]>;
+  ships:Ship[] = [];
+
   constructor(private httpClient:HttpClient) {
 
     this.query$ = this.httpClient
           .get<APIResponse>('https://swapi.dev/api/starships')
-          .pipe(map(data=>data.results));
+          .pipe(map(data=>{
+            this.ships = data.results;
+            return this.ships
+          }));
 
+  }
+
+  getShip(index:number){
+
+    return this.ships[index]; 
   }
                   
 }

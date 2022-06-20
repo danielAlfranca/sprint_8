@@ -1,6 +1,7 @@
 <ul>
-    <li *ngFor="let item of ships | async">
+    <li *ngFor="let item of ships | async; let i=index;" [routerLink]="'/profile/'+i">
         <h5>{{item.name}}</h5>
         <div>{{item.manufacturer}}</div>
     </li>
 </ul>
+<button>View More</button>
