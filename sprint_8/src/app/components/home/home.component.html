@@ -1,0 +1,6 @@
+<ul>
+    <li *ngFor="let item of ships | async">
+        <h5>{{item.name}}</h5>
+        <div>{{item.manufacturer}}</div>
+    </li>
+</ul>
