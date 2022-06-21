@@ -8,13 +8,15 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { DataService } from './services/data.service';
 import { ApiCallInterceptor } from './interceptors/apiCall';
 import { DetectScrollEndDirective } from './directives/detect-scroll-end.directive';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    DetectScrollEndDirective
+    DetectScrollEndDirective,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

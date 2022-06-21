@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, shareReplay } from 'rxjs';
 import { APIResponse, Ship } from '../interfaces/api';
 
 @Injectable()
@@ -20,9 +20,9 @@ export class DataService {
               if(!this.url) return this.ships;
 
               this.ships = this.ships.concat(data.results || []);
-              this.url = data.next || '';           
+              this.url = data.next || '';  /* NUEVA URL PARA EL INTERCEPTOR REQUEST ApiCallInterceptor */         
          
-            return this.ships;
+              return this.ships;
 
           }));
 

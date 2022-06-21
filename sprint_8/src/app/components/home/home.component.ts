@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, Subscription, take } from 'rxjs';
+import { take } from 'rxjs';
 import { Ship } from 'src/app/interfaces/api';
 import { DataService } from 'src/app/services/data.service';
 
@@ -19,13 +19,16 @@ export class HomeComponent implements OnInit {
   
   getMoreShips(){
 
-    this.data.query$.pipe(take(1)).subscribe((data)=>{
-      
-      this.gotToTheFinal = this.ships.length == data.length;
+    if(!this.gotToTheFinal){
 
-      this.ships = data;
-    
-    });
+      this.data.query$.pipe(take(1)).subscribe((data)=>{
+      
+        this.gotToTheFinal = this.ships.length == data.length;
+  
+        this.ships = data;
+      
+      });
+    }    
   }
  
 
