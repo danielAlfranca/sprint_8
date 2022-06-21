@@ -1,0 +1,10 @@
+.list-container{
+
+    min-height: calc(100% + 1rem);
+}
+
+.vh-100.overflow-auto{
+
+    height: 100vh;
+    overflow: auto;
+}

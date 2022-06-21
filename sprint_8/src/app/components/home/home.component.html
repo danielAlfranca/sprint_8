@@ -1,7 +1,13 @@
-<ul>
-    <li *ngFor="let item of ships | async; let i=index;" [routerLink]="'/profile/'+i">
-        <h5>{{item.name}}</h5>
-        <div>{{item.manufacturer}}</div>
-    </li>
-</ul>
-<button>View More</button>
+
+<div class="vh-100 overflow-auto" appDetectScrollEnd (endArrived)="getMoreShips()">
+    <ul class="list-container">
+        <li *ngFor="let item of ships; let i=index;" [routerLink]="'/profile/'+i">
+            <h5>{{item.name}}</h5>
+            <div>{{item.manufacturer}}</div>
+        </li>
+    </ul>
+    <div *ngIf="gotToTheFinal">Ya no hay mas naves friki</div> <br><br><br>
+</div>
+
+
+

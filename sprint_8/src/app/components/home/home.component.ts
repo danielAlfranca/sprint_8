@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, take } from 'rxjs';
 import { Ship } from 'src/app/interfaces/api';
 import { DataService } from 'src/app/services/data.service';
 
@@ -10,17 +10,23 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class HomeComponent implements OnInit {
 
-  subscription!: Subscription;
-  ships!: Observable<Ship[]>;
-
+  ships = [] as Ship[];
+  gotToTheFinal = false;
 
   constructor(private data:DataService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { this.getMoreShips(); } 
+  
+  getMoreShips(){
 
-    this.ships = this.data.query$;
-    this.subscription = this.data.query$.subscribe((data)=>console.log(data));
+    this.data.query$.pipe(take(1)).subscribe((data)=>{
+      
+      this.gotToTheFinal = this.ships.length == data.length;
 
+      this.ships = data;
+    
+    });
   }
+ 
 
 }

@@ -3,21 +3,27 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { APIResponse, Ship } from '../interfaces/api';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DataService {
 
   query$!:Observable<Ship[]>;
   ships:Ship[] = [];
 
+  url = 'https://swapi.dev/api/starships';
+
   constructor(private httpClient:HttpClient) {
 
     this.query$ = this.httpClient
-          .get<APIResponse>('https://swapi.dev/api/starships')
+          .get<APIResponse>(this.url)
           .pipe(map(data=>{
-            this.ships = data.results;
-            return this.ships
+
+              if(!this.url) return this.ships;
+
+              this.ships = this.ships.concat(data.results || []);
+              this.url = data.next || '';           
+         
+            return this.ships;
+
           }));
 
   }
