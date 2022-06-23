@@ -1,7 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+:root{
+
+    --headerHeight: 15rem
+}
 html,
 body {
     overflow: hidden;
     margin: 0;
+}
+
+.container-content{
+
+    height: calc(100vh - var(--headerHeight) );
+    overflow: auto;
+    scrollbar-color: #f8ed31 #595e62;
+    scrollbar-width: thin;
+    margin: 0 auto;
+    max-width: 992px;
+
+
 }

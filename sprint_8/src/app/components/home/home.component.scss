@@ -1,15 +1,8 @@
 .list-container {
     min-height: calc(100% + 1rem);
-    max-width: 992px;
-    padding-top: 12rem;
     //transform: rotateX(-45deg);
 }
 
-.vh-100.overflow-auto {
-    height: 100vh;
-    overflow: auto;
-    //perspective: 100vh;
-}
 
 h5 {
     font-family: monospace;

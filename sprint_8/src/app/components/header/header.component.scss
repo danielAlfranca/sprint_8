@@ -1,3 +1,35 @@
 header {
-    height: 10rem;
+    height: 15rem;
+}
+
+.header-item{
+
+    flex-basis: 33.3333%;
+}
+
+img{
+    height: 12rem;
+}
+
+
+
+.navigation-sections{
+
+      height: 3rem;
+}
+
+.nav-item{
+
+    cursor: pointer;
+}
+
+.logs .nav-link.active{
+
+    text-decoration: underline;
+}
+
+.navigation-sections .nav-link.active{
+
+    background-color: var(--bs-light);
+    color: black!important;
 }

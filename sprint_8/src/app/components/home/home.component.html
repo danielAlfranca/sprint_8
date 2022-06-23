@@ -1,6 +1,5 @@
-<div class="vh-100 overflow-auto position-relative" appDetectScrollEnd (endArrived)="getMoreShips()">
-    <app-header></app-header>
-    <ul class="list-container m-auto list-unstyled">
+<div class="container-content position-relative pt-4" appDetectScrollEnd (endArrived)="getMoreShips()">
+    <ul class="list-container m-auto list-unstyled pe-4">
         <li *ngFor="let item of ships; let i=index;" [routerLink]="'/profile/'+i" class="opacity-75 p-2 bg-dark text-light shadow my-3 nau">
             <h5>{{item.name}}</h5>
             <div class="opacity-50">{{item.manufacturer}}</div>

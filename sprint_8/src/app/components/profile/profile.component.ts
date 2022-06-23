@@ -16,22 +16,23 @@ export class ProfileComponent implements OnInit {
 
      this.activatedRoute.paramMap.subscribe(params => {
 
-        const id = Number(params.get('id')), ship = this.data.getShip(id);
+        const shipIndex= Number(params.get('id'));      
 
-        if(!ship) this.router.navigate(['/home']);
+        this.ship = this.data.getShip(shipIndex);
 
-        else{
-          
-          this.ship = ship;
+        //console.log(this.ship);
 
-          let url:any= (ship as any).url,
-              id = (url.split('/').filter((e:any)=>e).pop()).trim();
+        if(!this.ship) { this.router.navigate(['/welcome'], { queryParams: { init: true } });    }    
 
-          this.imgURL = 'https://starwars-visualguide.com/assets/img/starships/'+ id + '.jpg';
+        else{          
+
+          let IDParam = ((this.ship as any).url.split('/').filter((e:any)=>e).pop()).trim();
+
+          this.imgURL = 'https://starwars-visualguide.com/assets/img/starships/'+ IDParam + '.jpg';
 
         }
 
-        console.log(ship)
+        
     
     });
    }
