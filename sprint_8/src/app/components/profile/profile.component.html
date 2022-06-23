@@ -1,3 +1,13 @@
- <div>
-    {{ship?.name}}
-</div>
+<app-header></app-header>
+<section class="spaceship-profile m-auto overflow-auto">
+    <div class="banner text-center"><img src="{{imgURL}}" alt="" class="m-auto"></div>
+    <div class="description opacity-75 pt-4 border-top border-3 border-danger">
+        <h3 class="text-light text-uppercase">{{ship.name}}</h3>
+        <p class="py-4 opacity-75 text-light ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis magnam excepturi explicabo exercitationem facilis perspiciatis harum ullam optio provident, ad aliquam! Et hic ut odit obcaecati vero veniam modi voluptates?</p>
+        <div class="d-flex justify-content-around flex-wrap">
+            <div class="ship-data me-2 my-3 text-light" *ngFor="let data of shipData">
+                <strong class="me-2 text-capitalize">{{data}}: </strong> <span class="opacity-75">{{ship[data]}}</span>
+            </div>
+        </div>
+    </div>
+</section>

@@ -9,6 +9,8 @@ import { DataService } from './services/data.service';
 import { ApiCallInterceptor } from './interceptors/apiCall';
 import { DetectScrollEndDirective } from './directives/detect-scroll-end.directive';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     HomeComponent,
     ProfileComponent,
     DetectScrollEndDirective,
-    WelcomeComponent
+    WelcomeComponent,
+    HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

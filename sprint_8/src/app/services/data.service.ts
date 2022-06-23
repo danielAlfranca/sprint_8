@@ -18,7 +18,7 @@ export class DataService {
           .pipe(map(data=>{
 
               if(!this.url) return this.ships;
-
+             
               this.ships = this.ships.concat(data.results || []);
               this.url = data.next || '';  /* NUEVA URL PARA EL INTERCEPTOR REQUEST ApiCallInterceptor */         
          

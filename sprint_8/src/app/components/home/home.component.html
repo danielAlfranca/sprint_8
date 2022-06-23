@@ -1,13 +1,10 @@
-
-<div class="vh-100 overflow-auto" appDetectScrollEnd (endArrived)="getMoreShips()">
-    <ul class="list-container">
-        <li *ngFor="let item of ships; let i=index;" [routerLink]="'/profile/'+i">
+<div class="vh-100 overflow-auto position-relative" appDetectScrollEnd (endArrived)="getMoreShips()">
+    <app-header></app-header>
+    <ul class="list-container m-auto list-unstyled">
+        <li *ngFor="let item of ships; let i=index;" [routerLink]="'/profile/'+i" class="opacity-75 p-2 bg-dark text-light shadow my-3 nau">
             <h5>{{item.name}}</h5>
-            <div>{{item.manufacturer}}</div>
+            <div class="opacity-50">{{item.manufacturer}}</div>
         </li>
     </ul>
-    <div *ngIf="gotToTheFinal">Ya no hay mas naves friki</div> <br><br><br>
+    <div *ngIf="gotToTheFinal" class="text-light text-center">Ya no hay mas naves </div> <br><br><br>
 </div>
-
-
-
