@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, shareReplay } from 'rxjs';
+import { firstValueFrom, map, Observable, shareReplay } from 'rxjs';
 import { APIResponse, Ship } from '../interfaces/api';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DataService {
 
   query$!:Observable<Ship[]>;
@@ -31,6 +33,12 @@ export class DataService {
   getShip(index:number){
 
     return this.ships[index]; 
+  }
+
+  getPilot(url:string){
+
+    return this.httpClient.get(url);
+
   }
                   
 }

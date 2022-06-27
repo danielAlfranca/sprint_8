@@ -1,13 +1,24 @@
-
 <section class="spaceship-profile m-auto overflow-auto container-content">
     <div class="banner text-center"><img src="{{imgURL}}" alt="" class="m-auto"></div>
     <div class="description opacity-75 pt-4 border-top border-3 border-danger">
         <h3 class="text-light text-uppercase">{{ship.name}}</h3>
         <p class="py-4 opacity-75 text-light ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis magnam excepturi explicabo exercitationem facilis perspiciatis harum ullam optio provident, ad aliquam! Et hic ut odit obcaecati vero veniam modi voluptates?</p>
         <div class="d-flex justify-content-around flex-wrap">
-            <div class="ship-data me-2 my-3 text-light" *ngFor="let data of shipData">
+            <div class="ship-data me-2 my-3 text-light" *ngFor="let data of ['model','manufacturer','cost_in_credits','length', 'max_atmosphering_speed','crew']">
                 <strong class="me-2 text-capitalize">{{data}}: </strong> <span class="opacity-75">{{ship[data]}}</span>
             </div>
         </div>
+        <br>
+        <ul class="nav nav-tabs">
+            <li class="nav-item" *ngFor="let url of pilots ; let i = index">
+                <button class="nav-link" id="tab{{i+1}}" data-bs-toggle="tab" type="button" role="tab" [ngClass]="{active:i==selected}" (click)="selected=i">Pilot {{ i + 1 }}</button>
+
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div app-pilot *ngFor="let url of pilots ; let i = index" class="tab-pane bg-dark p-3" id="tbcontent{{i+1}}" role="tabpanel" [ngClass]="{active:i==selected}" [url]="url"></div>
+        </div>
+
     </div>
 </section>

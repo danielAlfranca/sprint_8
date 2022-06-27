@@ -12,10 +12,17 @@ export class ApiCallInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
+      
+      if(req.url.includes('starships')){
 
-    const newReq = req.clone({url: this.dataService.url});     
+        const newReq = req.clone({url: this.dataService.url});     
     
-    return next.handle(newReq)
+        return next.handle(newReq);
+
+      }
+
+      return next.handle(req);
+    
   }
 
 }

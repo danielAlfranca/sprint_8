@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  {
 
   isInit = true;
   user = "";
@@ -24,16 +24,9 @@ export class HeaderComponent implements OnInit {
 
       });
 
-      this.loginService.update.subscribe(e=>{ this.user = e;})
-    
+      this.loginService.update.subscribe(e=>this.user = e);
   }
 
-  ngOnInit(): void {
-  }
-
-  unlog(){
-
-    this.loginService.log('');
-  }
+  unlog(){ this.loginService.log(''); }
 
 }

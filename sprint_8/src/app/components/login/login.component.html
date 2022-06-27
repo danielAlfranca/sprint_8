@@ -1,23 +1,23 @@
-<div class="container-content" >
+<div class="container-content pt-5">
     <img src="../../../assets/images/yoda.png" class="d-block m-auto" style="max-height: 25rem">
-    <form novalidate class="form mt-4 mx-auto text-center p-3 bg-dark" (ngSubmit)="onSubmit($event)" #loginForm="ngForm" >
+    <form novalidate class="form mt-4 mx-auto text-center p-3 bg-dark" (ngSubmit)="onSubmit($event)" #loginForm="ngForm">
         <div class="form-group mb-3">
             <label for="email" class="text-light mb-2">Email</label>
-            <input id="email" name="email" type="email" class="form-control" [(ngModel)]="user.email" placeholder= "Email" required>
+            <input id="email" name="email" type="email" class="form-control" [(ngModel)]="user.email" placeholder="Email" required>
             <div class="invalid-feedback">
                 Este valor no es valido
             </div>
         </div>
         <div class="form-group">
-            <label for="password"  class="text-light mb-2">Password</label>
+            <label for="password" class="text-light mb-2">Password</label>
             <input id="password" name="password" type="password" class="form-control" [(ngModel)]="user.password" placeholder="Password" required>
             <div class="invalid-feedback">
                 Este valor no es valido
             </div>
         </div>
-        <div class="form-group mt-4">            
+        <div class="form-group mt-4 d-flex justify-content-between">
+            <a routerLink="/login" [queryParams]="linkChange" class="text-light">{{textChange}}</a>
             <input [value]="textInput" type="submit" class="btn btn-outline-light" [disabled]="!loginForm.form.valid">
         </div>
     </form>
 </div>
-

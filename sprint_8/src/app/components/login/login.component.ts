@@ -8,10 +8,13 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements  OnDestroy {
 
   type = '';
   textInput = 'Suscribirse';
+  textChange = 'Loggeate';
+  linkChange = {mode:'login'};
+
   private subscription:Subscription;
 
   constructor(
@@ -23,6 +26,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       this.type = params.get('mode') as string;
       this.textInput = this.type == 'sign-up' ? 'Suscribirse' : 'Entrar'; 
+      this.textChange = this.type == 'sign-up' ?'Loggeate':'Date de alta';
+      this.linkChange= {mode:this.type == 'sign-up' ? 'login':'sign-up'};
+
     })
    }
 
@@ -30,11 +36,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     email:"",
     password:""
-  }
-
-  ngOnInit(): void {
-
-    console.log(JSON.parse (localStorage.getItem('sw_dag_logins_list') || '[]'))
   }
 
   onSubmit(data:any){
@@ -73,8 +74,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     if(!this.authOK()){ return alert('Contraseña o email incorrecto')}
 
     this.loginService.log(this.user.email);
-  
-    this.router.navigate(['/starships']);  
+    
+    this.router.navigate(['/starships']); 
+    
+    document.body.scrollTo(0, 0);
     
   }
 

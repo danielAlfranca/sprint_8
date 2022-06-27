@@ -1,0 +1,10 @@
+<ng-container *ngIf="pilot">
+    <h5 class="text-light border-bottom border-dashed border-3 py-3" style="font-family: monospace;">{{pilot.name}}</h5>
+
+    <div class="d-flex flex-wrap">
+        <small class="pilot-data me-2 my-3 text-light" *ngFor="let data of ['birth_year', 'eye_color','gender','hair_color','height','mass','skin_color']">
+            <strong class="me-2 text-capitalize">{{data}}: </strong> <span class="opacity-75">{{pilot[data]}}</span>
+        </small>
+    </div>
+
+</ng-container>

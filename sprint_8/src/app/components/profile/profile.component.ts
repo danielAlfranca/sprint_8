@@ -7,11 +7,13 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
 
   ship!:any;
-  shipData = ['model','manufacturer','cost_in_credits','length', 'max_atmosphering_speed','crew'];
-  imgURL!:string
+  imgURL!:string;
+  pilots:any = [];
+  selected = 0;
+
   constructor(private activatedRoute:ActivatedRoute, private router: Router, private data:DataService) {
 
      this.activatedRoute.paramMap.subscribe(params => {
@@ -19,8 +21,6 @@ export class ProfileComponent implements OnInit {
         const shipIndex= Number(params.get('id'));      
 
         this.ship = this.data.getShip(shipIndex);
-
-        //console.log(this.ship);
 
         if(!this.ship) { this.router.navigate(['/welcome'], { queryParams: { init: true } });    }    
 
@@ -30,13 +30,11 @@ export class ProfileComponent implements OnInit {
 
           this.imgURL = 'https://starwars-visualguide.com/assets/img/starships/'+ IDParam + '.jpg';
 
-        }
+          this.pilots = this.ship.pilots
 
-        
-    
+        }
     });
    }
 
-  ngOnInit(): void {}
 
 }

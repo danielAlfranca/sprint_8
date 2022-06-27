@@ -2,32 +2,34 @@
     <div class="d-flex justify-content-between align-items-center">
         <div class="header-item px-4 text-light opacity-50 text-start d-flex align-items-center ">
             <ng-container *ngIf="user">
-                <button type="button" class="btn-close btn-close-white me-3" aria-label="Close" (click)="unlog()"></button> 
-                <small >Loggeado como <br> <em>{{user}}</em> </small> 
-            </ng-container>           
+                <button type="button" class="btn-close btn-close-white me-3" aria-label="Close" (click)="unlog()"></button>
+                <small>Loggeado como <br> <em>{{user}}</em> </small>
+            </ng-container>
         </div>
         <div class="header-item">
             <img src="../../../assets/images/star-wars-title.jpeg" alt="star-wars-title">
-        </div>        
-        <ul class="nav me-4 opacity-75 justify-content-end header-item" *ngIf="!isInit">
-            <li class="nav-item">
-                <a class="nav-link text-light" routerLink="/login" routerLinkActive="active" [queryParams]="{ mode: 'login' }">LOG IN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" routerLink="/login" routerLinkActive="active" [queryParams]="{ mode: 'sign-up' }">SIGN UP</a>
-            </li>
-            
+        </div>
+        <ul class="nav me-4 opacity-75 justify-content-end header-item logs">
+            <ng-container *ngIf="!isInit">
+                <li class="nav-item">
+                    <a class="nav-link text-light" routerLink="/login" routerLinkActive="active" [queryParams]="{ mode: 'login' }">LOG IN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" routerLink="/login" routerLinkActive="active" [queryParams]="{ mode: 'sign-up' }">SIGN UP</a>
+                </li>
+            </ng-container>
+
         </ul>
 
     </div>
-    
+
     <nav class="nav justify-content-center align-items-stretch border-top border-bottom border-2 opacity-50 navigation-sections " *ngIf="!isInit">
         <li class="nav-item">
-            <a class="nav-link text-light border-start border-end h-100" routerLink="/welcome"  routerLinkActive="active">HOME</a>
-          </li>
-          <li class="nav-item">
+            <a class="nav-link text-light border-start border-end h-100" routerLink="/welcome" routerLinkActive="active">HOME</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link text-light border-end h-100" routerLink="/starships" routerLinkActive="active">STARSHIPS</a>
-          </li>
+        </li>
     </nav>
 
 
