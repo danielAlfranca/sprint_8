@@ -2,7 +2,7 @@ import { Component, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { DialogService, DialogRef } from '@ngneat/dialog';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements  OnDestroy {
   modalMsg = '';
 
   private subscription:Subscription;
-  modalRef!: BsModalRef;
+  public modalRef!: DialogRef<any>;
 
   @ViewChild('templateModal') modalTemplate!:TemplateRef<any>
 
@@ -27,7 +27,7 @@ export class LoginComponent implements  OnDestroy {
     private activatedRoute:ActivatedRoute, 
     private router:Router,
     private loginService:LoginService,
-    private modalService: BsModalService) {
+    private modalService: DialogService) {
 
     this.subscription = this.activatedRoute.queryParamMap.subscribe(params=>{
 
@@ -103,7 +103,7 @@ export class LoginComponent implements  OnDestroy {
   alertModal(msg:string){
 
     this.modalMsg = msg;
-    this.modalRef = this.modalService.show(this.modalTemplate);
+    this.modalRef = this.modalService.open(this.modalTemplate);
 
   }
 

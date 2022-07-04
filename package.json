@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "ngx-bootstrap": "^8.0.0"
+    "@ngneat/dialog": "^2.1.1"
   }
 }

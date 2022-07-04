@@ -27,12 +27,6 @@
 
 <ng-template #templateModal>
     <div class="bg-dark">
-        <div class="text-end pe-3 pt-3">
-            <button type="button" class="btn-close close pull-right btn-close-white" aria-label="Close" (click)="modalRef?.hide()">
-                <span aria-hidden="true" class="visually-hidden">&times;</span>
-            </button>
-        
-        </div>
         
         <div class="modal-body text-center text-light">
             
@@ -40,6 +34,10 @@
                 <img src="../../../assets/images/robot.png" alt="robot" style="max-height:150px">
             </div>
             <h4>{{modalMsg}}</h4>
+
+            <div class="mt-3 ">
+                <button class="btn btn-warning" (click)="modalRef.close()" >OK</button>
+            </div>
         </div>
     </div>    
 </ng-template>
