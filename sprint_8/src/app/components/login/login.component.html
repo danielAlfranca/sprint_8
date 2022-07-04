@@ -3,16 +3,19 @@
     <form novalidate class="form mt-4 mx-auto text-center p-3 bg-dark" (ngSubmit)="onSubmit($event)" #loginForm="ngForm">
         <div class="form-group mb-3">
             <label for="email" class="text-light mb-2">Email</label>
-            <input id="email" name="email" type="email" class="form-control" [(ngModel)]="user.email" placeholder="Email" required>
-            <div class="invalid-feedback">
-                Este valor no es valido
+            <input id="email" name="email" type="email" class="form-control" [(ngModel)]="user.email" placeholder="Email" required email #userEmail="ngModel">
+            <div class="invalid-feedback d-block" *ngIf="userEmail.errors ? userEmail.errors['email'] && userEmail.touched: false">
+                Este email no es valido
+            </div>
+            <div class="invalid-feedback d-block" *ngIf="userEmail.errors ? userEmail.errors['required'] && userEmail.touched: false">
+                El email es obligatorio
             </div>
         </div>
         <div class="form-group">
             <label for="password" class="text-light mb-2">Password</label>
-            <input id="password" name="password" type="password" class="form-control" [(ngModel)]="user.password" placeholder="Password" required>
-            <div class="invalid-feedback">
-                Este valor no es valido
+            <input id="password" name="password" type="password" class="form-control" [(ngModel)]="user.password" placeholder="Password" required #userPass="ngModel">
+            <div class="invalid-feedback d-block" *ngIf="userPass.errors ? userPass.errors['required'] && userPass.touched: false">
+                La contrasena es obligatoria
             </div>
         </div>
         <div class="form-group mt-4 d-flex justify-content-between">
@@ -21,3 +24,22 @@
         </div>
     </form>
 </div>
+
+<ng-template #templateModal>
+    <div class="bg-dark">
+        <div class="text-end pe-3 pt-3">
+            <button type="button" class="btn-close close pull-right btn-close-white" aria-label="Close" (click)="modalRef?.hide()">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+            </button>
+        
+        </div>
+        
+        <div class="modal-body text-center text-light">
+            
+            <div class="text-center mb-3">
+                <img src="../../../assets/images/robot.png" alt="robot" style="max-height:150px">
+            </div>
+            <h4>{{modalMsg}}</h4>
+        </div>
+    </div>    
+</ng-template>

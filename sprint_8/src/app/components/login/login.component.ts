@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,18 @@ export class LoginComponent implements  OnDestroy {
   textChange = 'Loggeate';
   linkChange = {mode:'login'};
 
+  modalMsg = '';
+
   private subscription:Subscription;
+  modalRef!: BsModalRef;
+
+  @ViewChild('templateModal') modalTemplate!:TemplateRef<any>
 
   constructor(
     private activatedRoute:ActivatedRoute, 
     private router:Router,
-    private loginService:LoginService) {
+    private loginService:LoginService,
+    private modalService: BsModalService) {
 
     this.subscription = this.activatedRoute.queryParamMap.subscribe(params=>{
 
@@ -56,7 +63,7 @@ export class LoginComponent implements  OnDestroy {
 
   signUp(){
  
-    if(!this.isNewUser()) {return alert('Este usuario ya existe')}  
+    if(!this.isNewUser()) {return this.alertModal('Este usuario ya existe')}  
     
     const list = this.getList();
 
@@ -64,14 +71,14 @@ export class LoginComponent implements  OnDestroy {
 
     localStorage.setItem('sw_dag_logins_list',JSON.stringify(list));
 
-    alert('Usuario guardado con exito');
+    this.alertModal('Usuario guardado con exito');
 
     this.login();
   }
 
   login(){
 
-    if(!this.authOK()){ return alert('Contraseña o email incorrecto')}
+    if(!this.authOK()){ return this.alertModal('Contraseña o email incorrecto')}
 
     this.loginService.log(this.user.email);
     
@@ -91,6 +98,13 @@ export class LoginComponent implements  OnDestroy {
     const user = this.getList().find((e:any)=>e.email==this.user.email);
 
     return Boolean(user) && user.password==this.user.password;
+  }
+
+  alertModal(msg:string){
+
+    this.modalMsg = msg;
+    this.modalRef = this.modalService.show(this.modalTemplate);
+
   }
 
   ngOnDestroy(): void {

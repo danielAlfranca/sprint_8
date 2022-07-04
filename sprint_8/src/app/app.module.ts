@@ -12,6 +12,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { PilotComponent } from './components/pilot/pilot.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 @NgModule({
   declarations: [
@@ -28,10 +30,12 @@ import { PilotComponent } from './components/pilot/pilot.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiCallInterceptor, multi: true }
+
   ],
   bootstrap: [AppComponent]
 })
